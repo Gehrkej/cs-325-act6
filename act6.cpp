@@ -37,11 +37,17 @@ bool babyfaceHeel(int n)
 	vector<int> queue;
 
 	// initialize the queue with 0
-	// queue.push_back()
+	queue.push_back(0);
+	
+	struct visited first;
+	first.visit = true;
+	first.wType = 1;
+
+	visitedNodes[0] = first;
 
 	// while loop with condition to exit when queue is empty
 	int current;
-
+	//cout << "im goin in the while!" << endl;
 	while (!queue.empty())
 	{
 		// erase first element in queue, loop through the element and queue any adjacent edges
@@ -49,8 +55,8 @@ bool babyfaceHeel(int n)
 
 		queue.erase(queue.begin());
 		// check the type
-
-		for (int i = 0; i < n; i++)
+		//cout << "stuck in while loop" << endl;
+		for (int i = current; i <= n; i++)
 		{
 			if (G[current][i] == 1)
 			{
@@ -79,18 +85,18 @@ bool babyfaceHeel(int n)
 					// node has been visited, check if the type is the same as current, break if it is
 					if (visitedNodes[i].wType == visitedNodes[current].wType)
 					{
-						return false;
+						return true;
 					}
 				}
 			}
 		}
 	}
-	return true;
+	return false;
 }
 
 int main()
 {
-
+	
 	// Create a graph given in the above diagram
 
 	int n; // number of wrestlers numbered 1..n
@@ -116,7 +122,7 @@ int main()
 		G[w1][w2] = 1;
 		G[w2][w1] = 1;
 	}
-
+	//cout << "im goin in the function" << endl;
 	bool result = babyfaceHeel(n);
 
 	if (result)
