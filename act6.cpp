@@ -34,29 +34,30 @@ bool babyfaceHeel(int n)
 
 	// make vector for queue
 
-	vector<int> queue;
+	//vector<int> queue;
 
-	// initialize the queue with 0
-	queue.push_back(0);
 	
-	struct visited first;
-	first.visit = true;
-	first.wType = 1;
+	// initialize the queue with 0
+	//queue.push_back(0);
+	
+	// struct visited first;
+	// first.visit = true;
+	// first.wType = 1;
 
-	visitedNodes[0] = first;
+	// visitedNodes[0] = first;
 
 	// while loop with condition to exit when queue is empty
-	int current;
-	//cout << "im goin in the while!" << endl;
-	while (!queue.empty())
+	int current = 0;
+	
+	while (current < n)
 	{
 		// erase first element in queue, loop through the element and queue any adjacent edges
-		current = queue[0];
+		//current = queue[0];
 
-		queue.erase(queue.begin());
+		//queue.erase(queue.begin());
 		// check the type
 		//cout << "stuck in while loop" << endl;
-		for (int i = current; i <= n; i++)
+		for (int i = 0; i < n; i++)
 		{
 			if (G[current][i] == 1)
 			{
@@ -78,7 +79,7 @@ bool babyfaceHeel(int n)
 
 					// put it in queue and add to visited
 					visitedNodes[i] = pushin;
-					queue.push_back(i);
+					//queue.push_back(i);
 				}
 				else
 				{
@@ -90,6 +91,7 @@ bool babyfaceHeel(int n)
 				}
 			}
 		}
+		current++;
 	}
 	return false;
 }
